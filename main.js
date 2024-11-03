@@ -37,7 +37,7 @@ function displayProducts(products){
         productElement.appendChild(nameElement);
 
         const companyElement = document.createElement('p');
-        companyElement.textContent = name;
+        companyElement.textContent = `by ${company}`;
         productElement.appendChild(companyElement);
 
         const priceElement = document.createElement('p');
@@ -54,6 +54,7 @@ fetchProducts()
     .then(products => {
         displayProducts(products);
     })
+    // use catch to handle errors during fetch call with friendly message on webpage
     .catch(error => {
         productList.innerHTML = '<p> Failed to load products. Please try again later.</p>';
         console.error('Fetch error:', error);
