@@ -12,8 +12,26 @@ fetch('https://www.course-api.com/javascript-store-products')
     }
         return response.json();
     })
+// .then() and .catch() to handle the promise
     .then(data => resolve(data))
     .catch(error => reject(error));
 });
 }
 
+// Task 3 display product details dynamically
+
+function displayProducts(product){
+    productList.forEach(product => {
+        const {company, name, price} = product.fields;
+        const imageUrl = product.fields.image[0].url;
+        const productElement = document.createElement('div');
+
+        productElement.innerHTML = `
+        <img src= "${imageUrl}" alt="${name}">
+        <h3>${name}</h3>
+        <p> by ${company}</p>
+        <p> $${(price/100).toFixed(2)}</p> 
+        `; //displays price correctly
+        productList.appendChild(productElement); 
+    });
+}
